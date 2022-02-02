@@ -13,5 +13,22 @@
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smtaha512/multi-layered-canvas.git"
+  },
+  "keywords": [],
+  "author": {
+    "email": "contact@smtaha.dev",
+    "name": "smtaha512",
+    "url": "https://wwww.smtaha.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/smtaha512/multi-layered-canvas/issues"
+  },
+  "homepage": "https://github.com/smtaha512/multi-layered-canvas#readme",
+  "files": [
+    "lib/**/*"
+  ]
 }
