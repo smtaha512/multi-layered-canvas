@@ -4,7 +4,7 @@ import { CanvasLayerAlreadyExists, CanvasLayerNotFound } from './errors';
 export class MultiLayeredCanvas {
   private layers: Array<CanvasLayer> = [];
   private readonly canvas: HTMLCanvasElement;
-  private readonly canvas2dContext: CanvasRenderingContext2D;
+  private readonly canvas2dContext: CanvasRenderingContext2D | null;
 
   constructor(selectors: string | HTMLCanvasElement) {
     this.canvas = this.assertCanvas(selectors);
@@ -22,7 +22,7 @@ export class MultiLayeredCanvas {
   }
 
   getLayer(id: string): CanvasLayer | null {
-    const layer = this.layers.find((l) => l.id === id);
+    const layer = this.layers.find((layer: CanvasLayer) => layer.id === id);
     return layer ?? null;
   }
 
@@ -31,7 +31,7 @@ export class MultiLayeredCanvas {
   }
 
   findIndex(id: string): number {
-    return this.layers.findIndex((l) => l.id === id);
+    return this.layers.findIndex((layer: CanvasLayer) => layer.id === id);
   }
 
   updateLayer(id: string, update: CanvasLayer): MultiLayeredCanvas {
@@ -47,7 +47,7 @@ export class MultiLayeredCanvas {
   removeLayer(id: string): MultiLayeredCanvas {
     const layer = this.getLayer(id);
     if (!layer) {
-      return null;
+      throw new CanvasLayerNotFound(id);
     }
     this.layers = this.layers.filter((l) => l.id !== id);
 
@@ -57,6 +57,9 @@ export class MultiLayeredCanvas {
   render(): void {
     const canvas = this.canvas;
     const context = this.canvas2dContext;
+    if(context === null) {
+      throw new Error('Context is null');
+    }
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     this.layers.forEach((layer) => {
@@ -75,9 +78,9 @@ export class MultiLayeredCanvas {
       );
     }
 
-    let canvas: HTMLCanvasElement = null;
+    let canvas: HTMLCanvasElement | null = null;
     if (typeof selectors === 'string') {
-      canvas = document.querySelector(selectors);
+      canvas = document.querySelector(selectors) as HTMLCanvasElement;
     }
     if (typeof selectors === 'object') {
       canvas = selectors;
