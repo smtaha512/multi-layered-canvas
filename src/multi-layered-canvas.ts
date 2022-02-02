@@ -57,7 +57,7 @@ export class MultiLayeredCanvas {
   render(): void {
     const canvas = this.canvas;
     const context = this.canvas2dContext;
-    if(context === null) {
+    if (context === null) {
       throw new Error('Context is null');
     }
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,13 +69,9 @@ export class MultiLayeredCanvas {
     return undefined;
   }
 
-  private assertCanvas(
-    selectors: string | HTMLCanvasElement
-  ): HTMLCanvasElement {
+  private assertCanvas(selectors: string | HTMLCanvasElement): HTMLCanvasElement {
     if (typeof selectors !== 'string' && typeof selectors !== 'object') {
-      throw new TypeError(
-        `Expected string or HTMLCanvasElement got ${typeof selectors}`
-      );
+      throw new TypeError(`Expected string or HTMLCanvasElement got ${typeof selectors}`);
     }
 
     let canvas: HTMLCanvasElement | null = null;
