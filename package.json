@@ -1,7 +1,7 @@
 {
   "name": "multi-layered-canvas",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
