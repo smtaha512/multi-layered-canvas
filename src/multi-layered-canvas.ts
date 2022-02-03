@@ -69,6 +69,10 @@ export class MultiLayeredCanvas {
     return undefined;
   }
 
+  get length(): number {
+    return this.layers.length;
+  }
+
   private assertCanvas(selectors: string | HTMLCanvasElement): HTMLCanvasElement {
     if (typeof selectors !== 'string' && typeof selectors !== 'object') {
       throw new TypeError(`Expected string or HTMLCanvasElement got ${typeof selectors}`);
