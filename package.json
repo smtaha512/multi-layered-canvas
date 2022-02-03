@@ -2,7 +2,8 @@
   "name": "multi-layered-canvas",
   "version": "0.0.2",
   "private": false,
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
