@@ -12,11 +12,10 @@ export class MultiLayeredCanvas {
   }
 
   push(...layers: CanvasLayer[]): MultiLayeredCanvas {
-    layers.forEach((layer) => {
-      if (this.getLayer(layer.id)) {
-        throw new CanvasLayerAlreadyExists(layer.id);
-      }
-    });
+    const existingLayer = layers.find((layer) => this.getLayer(layer.id)?.id === layer.id);
+    if (existingLayer?.id) {
+      throw new CanvasLayerAlreadyExists(existingLayer.id);
+    }
     this.layers.push(...layers);
     return this;
   }
