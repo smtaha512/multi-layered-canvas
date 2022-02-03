@@ -12,11 +12,13 @@ export class MultiLayeredCanvas {
   }
 
   push(...layers: CanvasLayer[]): MultiLayeredCanvas {
-    const existingLayer = layers.find((layer) => this.getLayer(layer.id)?.id === layer.id);
+    const uniqueLayers = this.getUniqueLayers(layers);
+
+    const existingLayer = uniqueLayers.find((layer) => this.getLayer(layer.id)?.id === layer.id);
     if (existingLayer?.id) {
       throw new CanvasLayerAlreadyExists(existingLayer.id);
     }
-    this.layers.push(...layers);
+    this.layers.push(...uniqueLayers);
     return this;
   }
 
@@ -88,5 +90,13 @@ export class MultiLayeredCanvas {
       throw new TypeError(`Expected HTMLCanvasElement got ${canvas?.tagName}`);
     }
     return canvas;
+  }
+
+  private getUniqueLayers(layers: CanvasLayer[]): CanvasLayer[] {
+    if (layers.length === 1) {
+      return layers;
+    }
+    const uniqueLayerIds = Array.from(new Set(layers.map((layer) => layer.id)));
+    return uniqueLayerIds.map((id) => layers.find((layer) => layer.id === id)).filter(Boolean) as CanvasLayer[];
   }
 }
