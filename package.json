@@ -29,7 +29,12 @@
     "type": "git",
     "url": "git+https://github.com/smtaha512/multi-layered-canvas.git"
   },
-  "keywords": [],
+  "keywords": [
+    "HTML Canvas",
+    "JavaScript",
+    "TypeScript",
+    "MultiLayeredCanvas"
+  ],
   "author": {
     "email": "contact@smtaha.dev",
     "name": "smtaha512",
