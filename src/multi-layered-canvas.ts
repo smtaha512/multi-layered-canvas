@@ -27,7 +27,7 @@ export class MultiLayeredCanvas {
   }
 
   at(index: number): CanvasLayer {
-    return this.layers[index];
+    return this.layers[index] ?? null;
   }
 
   findIndex(id: string): number {
