@@ -1,4 +1,4 @@
-import { CanvasLayer } from './canvas-layer';
+import type { CanvasLayer } from './canvas-layer';
 import { CanvasLayerAlreadyExists, CanvasLayerNotFound } from './errors';
 
 export class MultiLayeredCanvas {
