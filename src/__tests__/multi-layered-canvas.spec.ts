@@ -219,4 +219,26 @@ describe('MultiLayeredCanvas', () => {
       expect(() => multiLayeredCanvas.removeLayer('layer-2')).toThrow('layer-2');
     });
   });
+
+  describe('MultiLayeredCanvas#height', () => {
+    it('should get and set height of the multi layered canvas element', () => {
+      document.body.appendChild(document.createElement('canvas'));
+      const multiLayeredCanvas = new MultiLayeredCanvas('canvas');
+
+      multiLayeredCanvas.height = 10;
+      expect(multiLayeredCanvas.height).toBe(10);
+      expect(document.querySelector('canvas')?.height).toBe(10);
+    });
+  });
+
+  describe('MultiLayeredCanvas#height', () => {
+    it('should get and set width of the multi layered canvas element', () => {
+      document.body.appendChild(document.createElement('canvas'));
+      const multiLayeredCanvas = new MultiLayeredCanvas('canvas');
+
+      multiLayeredCanvas.width = 10;
+      expect(multiLayeredCanvas.width).toBe(10);
+      expect(document.querySelector('canvas')?.width).toBe(10);
+    });
+  });
 });
